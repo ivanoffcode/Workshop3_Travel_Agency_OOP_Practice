@@ -2,7 +2,6 @@ package com.company.oop.agency.models.vehicles;
 
 import com.company.oop.agency.models.enums.VehicleType;
 import com.company.oop.agency.models.vehicles.contracts.Train;
-import com.company.oop.agency.models.vehicles.contracts.Vehicle;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 

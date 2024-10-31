@@ -2,7 +2,6 @@ package com.company.oop.agency.models.vehicles;
 
 import com.company.oop.agency.models.enums.VehicleType;
 import com.company.oop.agency.models.vehicles.contracts.Airplane;
-import com.company.oop.agency.models.vehicles.contracts.Train;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 
@@ -44,17 +43,13 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
                         PRICE_MAX_VALUE));
     }
 
-    public boolean getHasFreeFood() {
-        return hasFreeFood;
-    }
-
     private void setHasFreeFood(boolean hasFreeFood) {
         this.hasFreeFood = hasFreeFood;
     }
 
     @Override
     public boolean hasFreeFood() {
-        return getHasFreeFood();
+        return hasFreeFood;
     }
 
     @Override
@@ -64,6 +59,6 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
 
     @Override
     public String getAsString() {
-        return "Airplane ----\n" + super.getAsString() + String.format("Has free food: %s\n", getHasFreeFood());
+        return "Airplane ----\n" + super.getAsString() + String.format("Has free food: %s\n", hasFreeFood());
     }
 }
