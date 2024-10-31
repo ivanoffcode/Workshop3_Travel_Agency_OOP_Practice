@@ -15,16 +15,9 @@ public class JourneyImpl implements Journey {
     public static final int DISTANCE_MIN_VALUE = 5;
     public static final int DISTANCE_MAX_VALUE = 5000;
 
-    private static final String START_LOCATION_ERROR_MESSAGE = String.format("The StartingLocation's length " +
+    private static final String ERROR_MESSAGE = "%s " +
             "cannot be less than %d or more than " +
-            "%d symbols long.", START_LOCATION_MIN_LENGTH, START_LOCATION_MAX_LENGTH);
-    private static final String DESTINATION_ERROR_MESSAGE = String.format("The Destination's length " +
-            "cannot be less than %d or more than " +
-            "%d symbols long.", DESTINATION_MIN_LENGTH, DESTINATION_MAX_LENGTH);
-    private static final String DISTANCE_ERROR_MESSAGE = String.format("The Distance " +
-            "cannot be less than %d or more than " +
-            "%d kilometers.", DISTANCE_MIN_VALUE, DISTANCE_MAX_VALUE);
-
+            "%d %s";
 
     int id;
     private String startLocation;
@@ -76,19 +69,31 @@ public class JourneyImpl implements Journey {
 
     private void setStartLocation(String startLocation) {
         validateStringLength(startLocation, START_LOCATION_MIN_LENGTH,
-                START_LOCATION_MAX_LENGTH, START_LOCATION_ERROR_MESSAGE);
+                START_LOCATION_MAX_LENGTH, String.format(ERROR_MESSAGE,
+                        "The StartingLocation's length",
+                        START_LOCATION_MIN_LENGTH,
+                        START_LOCATION_MAX_LENGTH,
+                        "symbols long."));
         this.startLocation = startLocation;
     }
 
     private void setDestination(String destination) {
         validateStringLength(destination, DESTINATION_MIN_LENGTH,
-                DESTINATION_MAX_LENGTH, DESTINATION_ERROR_MESSAGE);
+                DESTINATION_MAX_LENGTH, String.format(ERROR_MESSAGE,
+                        "The Destination's length",
+                        DESTINATION_MIN_LENGTH,
+                        DESTINATION_MAX_LENGTH,
+                        "symbols long."));
         this.destination = destination;
     }
 
     private void setDistance(int distance) {
         validateValueInRange(distance, DISTANCE_MIN_VALUE,
-                DISTANCE_MAX_VALUE, DISTANCE_ERROR_MESSAGE);
+                DISTANCE_MAX_VALUE, String.format(ERROR_MESSAGE,
+                        "The Distance",
+                        DISTANCE_MIN_VALUE,
+                        DISTANCE_MAX_VALUE,
+                        "kilometers."));
         this.distance = distance;
     }
 
@@ -99,11 +104,11 @@ public class JourneyImpl implements Journey {
     @Override
     public String getAsString() {
         return String.format("Journey ----\n" +
-                "Start location: %s\n" +
-                "Destination: %s\n" +
-                "Distance: %d\n" +
-                "Vehicle type: %s\n" +
-                "Travel costs: %.2f\n", getStartLocation(), getDestination(),
-                getDistance(), getVehicle().getType(), calculateTravelCosts()) ;
+                        "Start location: %s\n" +
+                        "Destination: %s\n" +
+                        "Distance: %d\n" +
+                        "Vehicle type: %s\n" +
+                        "Travel costs: %.2f\n", getStartLocation(), getDestination(),
+                getDistance(), getVehicle().getType(), calculateTravelCosts());
     }
 }

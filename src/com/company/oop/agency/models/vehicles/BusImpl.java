@@ -4,14 +4,12 @@ import com.company.oop.agency.models.enums.VehicleType;
 import com.company.oop.agency.models.vehicles.contracts.Bus;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
+import static java.lang.String.format;
 
 public class BusImpl extends VehicleBase implements Bus {
 
     public static final int PASSENGER_MIN_VALUE = 10;
     public static final int PASSENGER_MAX_VALUE = 50;
-
-    private static final String PASSENGER_ERROR_MESSAGE = String.format("A bus with less than %d passenger" +
-            " or more than %d passengers cannot exist!", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE);
 
     public BusImpl(int id, int passengerCapacity, double pricePerKilometer) {
         super(id, passengerCapacity, pricePerKilometer);
@@ -23,8 +21,10 @@ public class BusImpl extends VehicleBase implements Bus {
                 passengerCapacity,
                 PASSENGER_MIN_VALUE,
                 PASSENGER_MAX_VALUE,
-                PASSENGER_ERROR_MESSAGE
-        );
+                format(PASSENGER_ERROR_MESSAGE,
+                        Bus.class.getSimpleName().toLowerCase(),
+                        PASSENGER_MIN_VALUE,
+                        PASSENGER_MAX_VALUE));
     }
 
     @Override

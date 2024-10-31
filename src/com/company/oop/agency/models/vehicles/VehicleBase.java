@@ -11,12 +11,12 @@ public abstract class VehicleBase implements Vehicle {
     public static final double PRICE_MIN_VALUE = 0.10;
     public static final double PRICE_MAX_VALUE = 2.50;
 
-    private static final String PASSENGER_ERROR_MESSAGE = String.format("A vehicle with " +
+    protected static final String PASSENGER_ERROR_MESSAGE = "A %s with " +
             "less than %d passenger" +
-            " or more than %d passengers cannot exist!", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE);
-    private static final String PRICE_ERROR_MESSAGE = String.format ("A vehicle with a " +
+            " or more than %d passengers cannot exist!";
+    protected static final String PRICE_ERROR_MESSAGE = "A %s with a " +
             "price per kilometer lower than " +
-            "$%.2f or higher than $%.2f cannot exist!", PRICE_MIN_VALUE, PRICE_MAX_VALUE);
+            "$%.2f or higher than $%.2f cannot exist!";
 
     private int id;
     private int passengerCapacity;
@@ -37,8 +37,10 @@ public abstract class VehicleBase implements Vehicle {
                 passengerCapacity,
                 PASSENGER_MIN_VALUE,
                 PASSENGER_MAX_VALUE,
-                PASSENGER_ERROR_MESSAGE
-        );
+                String.format(PASSENGER_ERROR_MESSAGE,
+                        Vehicle.class.getSimpleName().toLowerCase(),
+                        PASSENGER_MIN_VALUE,
+                        PASSENGER_MAX_VALUE));
     }
 
     protected void validatePricePerKilometer(double pricePerKilometer) {
@@ -46,8 +48,10 @@ public abstract class VehicleBase implements Vehicle {
                 pricePerKilometer,
                 PRICE_MIN_VALUE,
                 PRICE_MAX_VALUE,
-                PRICE_ERROR_MESSAGE
-        );
+                String.format(PRICE_ERROR_MESSAGE,
+                        Vehicle.class.getSimpleName().toLowerCase(),
+                        PRICE_MIN_VALUE,
+                        PRICE_MAX_VALUE));
     }
 
     private void setPassengerCapacity(int passengerCapacity) {

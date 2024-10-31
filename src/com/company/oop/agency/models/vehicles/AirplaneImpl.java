@@ -2,6 +2,7 @@ package com.company.oop.agency.models.vehicles;
 
 import com.company.oop.agency.models.enums.VehicleType;
 import com.company.oop.agency.models.vehicles.contracts.Airplane;
+import com.company.oop.agency.models.vehicles.contracts.Train;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 
@@ -11,11 +12,6 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
     public static final int PASSENGER_MAX_VALUE = 800;
     public static final double PRICE_MIN_VALUE = 0.10;
     public static final double PRICE_MAX_VALUE = 2.50;
-
-    private static final String PASSENGER_ERROR_MESSAGE = String.format("An airplane with less than %d passenger" +
-            " or more than %d passengers cannot exist!", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE);
-    private static final String PRICE_ERROR_MESSAGE = String.format("An airplane with a price per kilometer lower than " +
-            "$%.2f or higher than $%.2f cannot exist!", PRICE_MIN_VALUE, PRICE_MAX_VALUE);
 
     private boolean hasFreeFood;
 
@@ -30,8 +26,10 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
                 passengerCapacity,
                 PASSENGER_MIN_VALUE,
                 PASSENGER_MAX_VALUE,
-                PASSENGER_ERROR_MESSAGE
-        );
+                String.format(PASSENGER_ERROR_MESSAGE,
+                        Airplane.class.getSimpleName().toLowerCase(),
+                        PASSENGER_MIN_VALUE,
+                        PASSENGER_MAX_VALUE));
     }
 
     @Override
@@ -40,8 +38,10 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
                 pricePerKilometer,
                 PRICE_MIN_VALUE,
                 PRICE_MAX_VALUE,
-                PRICE_ERROR_MESSAGE
-        );
+                String.format(PRICE_ERROR_MESSAGE,
+                        Airplane.class.getSimpleName().toLowerCase(),
+                        PRICE_MIN_VALUE,
+                        PRICE_MAX_VALUE));
     }
 
     public boolean getHasFreeFood() {

@@ -2,6 +2,7 @@ package com.company.oop.agency.models.vehicles;
 
 import com.company.oop.agency.models.enums.VehicleType;
 import com.company.oop.agency.models.vehicles.contracts.Train;
+import com.company.oop.agency.models.vehicles.contracts.Vehicle;
 
 import static com.company.oop.agency.utils.ValidationHelper.validateValueInRange;
 
@@ -12,13 +13,9 @@ public class TrainImpl extends VehicleBase implements Train {
     public static final int CARTS_MIN_VALUE = 1;
     public static final int CARTS_MAX_VALUE = 15;
 
-    private static final String TRAIN_PASSENGER_ERROR_MESSAGE = String.format("A train cannot" +
-            " have less than %d passengers" +
-            " or more than %d passengers.", PASSENGER_MIN_VALUE, PASSENGER_MAX_VALUE);
-
-    private static final String TRAIN_CARTS_ERROR_MESSAGE = String.format("A train cannot have " +
-            "less than %d cart or more " +
-            "than %d carts.", CARTS_MIN_VALUE, CARTS_MAX_VALUE);
+    private static final String TRAIN_ERROR_MESSAGE = "A %s cannot have " +
+            "less than %d %s or more " +
+            "than %d %s.";
 
     private int carts;
 
@@ -33,8 +30,10 @@ public class TrainImpl extends VehicleBase implements Train {
                 passengerCapacity,
                 PASSENGER_MIN_VALUE,
                 PASSENGER_MAX_VALUE,
-                TRAIN_PASSENGER_ERROR_MESSAGE
-        );
+                String.format(TRAIN_ERROR_MESSAGE,
+                        Train.class.getSimpleName().toLowerCase(),
+                        PASSENGER_MIN_VALUE, "passengers",
+                        PASSENGER_MAX_VALUE, "passengers"));
     }
 
     private void validateCartsCapacity(int passengerCapacity) {
@@ -42,8 +41,10 @@ public class TrainImpl extends VehicleBase implements Train {
                 passengerCapacity,
                 CARTS_MIN_VALUE,
                 CARTS_MAX_VALUE,
-                TRAIN_CARTS_ERROR_MESSAGE
-        );
+                String.format(TRAIN_ERROR_MESSAGE,
+                        Train.class.getSimpleName().toLowerCase(),
+                        CARTS_MIN_VALUE, "cart",
+                        CARTS_MAX_VALUE, "carts"));
     }
 
     @Override
