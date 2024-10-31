@@ -17,7 +17,6 @@ public class AirplaneImpl extends VehicleBase implements Airplane {
     private static final String PRICE_ERROR_MESSAGE = String.format("An airplane with a price per kilometer lower than " +
             "$%.2f or higher than $%.2f cannot exist!", PRICE_MIN_VALUE, PRICE_MAX_VALUE);
 
-
     private boolean hasFreeFood;
 
     public AirplaneImpl(int id, int passengerCapacity, double pricePerKilometer, boolean hasFreeFood) {

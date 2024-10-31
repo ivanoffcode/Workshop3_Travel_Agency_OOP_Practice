@@ -4,12 +4,12 @@ import com.company.oop.agency.commands.CommandsConstants;
 import com.company.oop.agency.commands.contracts.Command;
 import com.company.oop.agency.core.contracts.AgencyRepository;
 import com.company.oop.agency.models.vehicles.contracts.Train;
-import com.company.oop.agency.utils.ValidationHelper;
 
 import java.util.List;
 
 import static com.company.oop.agency.utils.ParsingHelpers.tryParseDouble;
 import static com.company.oop.agency.utils.ParsingHelpers.tryParseInteger;
+import static com.company.oop.agency.utils.ValidationHelper.validateArgumentsCount;
 
 public class CreateTrainCommand implements Command {
 
@@ -26,7 +26,7 @@ public class CreateTrainCommand implements Command {
     }
 
     public String execute(List<String> parameters) {
-        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
+        validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         parseParameters(parameters);
         Train createdTrain = agencyRepository.createTrain(passengerCapacity, pricePerKilometer, cartsCount);
         return String.format(CommandsConstants.VEHICLE_CREATED_MESSAGE, createdTrain.getId());

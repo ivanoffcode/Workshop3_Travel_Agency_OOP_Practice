@@ -3,6 +3,7 @@ package com.company.oop.agency.core;
 import com.company.oop.agency.exceptions.ElementNotFoundException;
 import com.company.oop.agency.models.JourneyImpl;
 import com.company.oop.agency.models.TicketImpl;
+import com.company.oop.agency.models.contracts.Identifiable;
 import com.company.oop.agency.models.contracts.Journey;
 import com.company.oop.agency.models.vehicles.AirplaneImpl;
 import com.company.oop.agency.models.vehicles.BusImpl;
@@ -41,37 +42,6 @@ public class AgencyRepositoryImpl implements AgencyRepository {
     }
 
     @Override
-    public Vehicle findVehicleById(int id) {
-        for (Vehicle vehicle : getVehicles()) {
-            if (vehicle.getId() == id) {
-                return vehicle;
-            }
-        }
-
-        throw new ElementNotFoundException(String.format("No vehicle with ID %d", id));
-    }
-
-    @Override
-    public JourneyImpl findJourneyById(int id) {
-        for (JourneyImpl journey : journeys) {
-            if(journey.getId() == id){
-                return journey;
-            }
-        }
-        throw new ElementNotFoundException(String.format("No journey with ID %d", id));
-    }
-
-    @Override
-    public TicketImpl findTicketById(int id) {
-        for (TicketImpl ticket : tickets) {
-            if(ticket.getId() == id){
-                return ticket;
-            }
-        }
-        throw new ElementNotFoundException(String.format("No ticket with ID %d", id));
-    }
-
-    @Override
     public AirplaneImpl createAirplane(int passengerCapacity, double pricePerKilometer, boolean hasFreeFood) {
         AirplaneImpl airplane = new AirplaneImpl(++nextId, passengerCapacity, pricePerKilometer, hasFreeFood);
         this.vehicles.add(airplane);
@@ -106,6 +76,13 @@ public class AgencyRepositoryImpl implements AgencyRepository {
         return ticket;
     }
 
-    // Advanced task: Implement the following generic method that looks for an item by id.
-    // private <T extends {{?}}> T findElementById(List<T> elements, int id) { }
+     public <T extends Identifiable> T findElementById(List<T> elements, int id) {
+         for (T element : elements) {
+             if (element.getId() == id) {
+                 return element;
+             }
+         }
+         throw new ElementNotFoundException(String.format("No element with ID %d", id));
+    }
+
 }

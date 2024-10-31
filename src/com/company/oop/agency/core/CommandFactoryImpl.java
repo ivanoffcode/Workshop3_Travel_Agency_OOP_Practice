@@ -8,14 +8,15 @@ import com.company.oop.agency.commands.listing.ListTicketsCommand;
 import com.company.oop.agency.commands.listing.ListVehiclesCommand;
 import com.company.oop.agency.core.contracts.AgencyRepository;
 import com.company.oop.agency.core.contracts.CommandFactory;
-import com.company.oop.agency.utils.ParsingHelpers;
+
+import static com.company.oop.agency.utils.ParsingHelpers.tryParseEnum;
 
 public class CommandFactoryImpl implements CommandFactory {
 
     private static final String INVALID_COMMAND = "Invalid command name: %s!";
 
     public Command createCommandFromCommandName(String commandName, AgencyRepository agencyRepository) {
-        CommandType commandType = ParsingHelpers.tryParseEnum(commandName, CommandType.class, String.format(INVALID_COMMAND, commandName));
+        CommandType commandType = tryParseEnum(commandName, CommandType.class, String.format(INVALID_COMMAND, commandName));
 
         switch (commandType) {
             case CREATEBUS:

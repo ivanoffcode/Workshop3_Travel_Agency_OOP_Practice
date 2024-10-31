@@ -80,7 +80,7 @@ public class AgencyRepositoryTests {
     @Test
     public void findVehicleById_Should_ThrowException_When_VehicleDoesNotExist() {
         //Arrange, Act, Assert
-        assertThrows(ElementNotFoundException.class, () -> repository.findVehicleById(1));
+        assertThrows(ElementNotFoundException.class, () -> repository.findElementById(repository.getVehicles(),1));
     }
 
     @Test
@@ -92,7 +92,7 @@ public class AgencyRepositoryTests {
                 true);
 
         // Act
-        Vehicle vehicle = repository.findVehicleById(1);
+        Vehicle vehicle = repository.findElementById(repository.getVehicles(),1);
 
         // Assert
         assertAll(
@@ -105,7 +105,7 @@ public class AgencyRepositoryTests {
     @Test
     public void findJourneyById_Should_ThrowException_When_JourneyDoesNotExist() {
         //Arrange, Act, Assert
-        assertThrows(ElementNotFoundException.class, () -> repository.findJourneyById(1));
+        assertThrows(ElementNotFoundException.class, () -> repository.findElementById(repository.getJourneys(),1));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AgencyRepositoryTests {
         );
 
         // Act
-        Journey journey = repository.findJourneyById(1);
+        Journey journey = repository.findElementById(repository.getJourneys(),1);
 
         // Assert
         assertAll(
@@ -135,7 +135,7 @@ public class AgencyRepositoryTests {
     @Test
     public void findTicketById_Should_ThrowException_When_TicketDoesNotExist() {
         //Arrange, Act, Assert
-        assertThrows(ElementNotFoundException.class, () -> repository.findTicketById(1));
+        assertThrows(ElementNotFoundException.class, () -> repository.findElementById(repository.getTickets(),1));
     }
 
     @Test
@@ -148,7 +148,7 @@ public class AgencyRepositoryTests {
         );
 
         // Act
-        Ticket ticket = repository.findTicketById(1);
+        Ticket ticket = repository.findElementById(repository.getTickets(),1);
 
         // Assert
         assertAll(

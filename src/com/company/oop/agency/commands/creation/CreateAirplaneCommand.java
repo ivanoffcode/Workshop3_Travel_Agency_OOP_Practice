@@ -4,11 +4,11 @@ import com.company.oop.agency.commands.CommandsConstants;
 import com.company.oop.agency.commands.contracts.Command;
 import com.company.oop.agency.core.contracts.AgencyRepository;
 import com.company.oop.agency.models.vehicles.contracts.Airplane;
-import com.company.oop.agency.models.vehicles.contracts.Bus;
-import com.company.oop.agency.utils.ParsingHelpers;
-import com.company.oop.agency.utils.ValidationHelper;
 
 import java.util.List;
+
+import static com.company.oop.agency.utils.ParsingHelpers.*;
+import static com.company.oop.agency.utils.ValidationHelper.validateArgumentsCount;
 
 public class CreateAirplaneCommand implements Command {
 
@@ -26,19 +26,16 @@ public class CreateAirplaneCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-
+        validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         parseParameters(parameters);
-
         Airplane createdAirplane = agencyRepository.createAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
-
         return String.format(CommandsConstants.VEHICLE_CREATED_MESSAGE, createdAirplane.getId());
     }
 
     private void parseParameters(List<String> parameters) {
-        passengerCapacity = ParsingHelpers.tryParseInteger(parameters.get(0), "passenger capacity");
-        pricePerKilometer = ParsingHelpers.tryParseDouble(parameters.get(1), "price");
-        hasFreeFood = ParsingHelpers.tryParseBoolean(parameters.get(2), "has free food");
+        passengerCapacity = tryParseInteger(parameters.get(0), "passenger capacity");
+        pricePerKilometer = tryParseDouble(parameters.get(1), "price");
+        hasFreeFood = tryParseBoolean(parameters.get(2), "has free food");
     }
 
 

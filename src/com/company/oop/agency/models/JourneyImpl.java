@@ -40,7 +40,6 @@ public class JourneyImpl implements Journey {
         setVehicle(vehicle);
     }
 
-
     @Override
     public int getDistance() {
         return distance;

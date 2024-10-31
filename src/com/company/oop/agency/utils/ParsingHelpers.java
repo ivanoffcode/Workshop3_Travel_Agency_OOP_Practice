@@ -1,7 +1,6 @@
 package com.company.oop.agency.utils;
 
 import com.company.oop.agency.exceptions.InvalidUserInputException;
-import com.company.oop.agency.models.contracts.Journey;
 
 public class ParsingHelpers {
 

@@ -72,6 +72,7 @@ public class AgencyEngineImpl implements Engine {
      * @param inputLine A complete input line
      * @return A list of the parameters needed to execute the command
      */
+
     private List<String> extractCommandParameters(String inputLine) {
         String[] commandParts = inputLine.split(" ");
         List<String> parameters = new ArrayList<>();

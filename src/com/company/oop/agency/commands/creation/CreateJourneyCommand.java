@@ -28,13 +28,10 @@ public class CreateJourneyCommand implements Command {
 
     public String execute(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-
         parseParameters(parameters);
-
-        Vehicle vehicle = repository.findVehicleById(vehicleId);
-        Journey journey = repository.createJourney(startLocation, destination, distance, vehicle);
-
-        return String.format(JOURNEY_CREATED_MESSAGE, journey.getId());
+        Vehicle vehicle = repository.findElementById(repository.getVehicles(),vehicleId);
+        Journey createdJourney = repository.createJourney(startLocation, destination, distance, vehicle);
+        return String.format(JOURNEY_CREATED_MESSAGE, createdJourney.getId());
     }
 
     private void parseParameters(List<String> parameters) {

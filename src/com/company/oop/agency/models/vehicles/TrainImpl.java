@@ -11,8 +11,6 @@ public class TrainImpl extends VehicleBase implements Train {
     public static final int PASSENGER_MAX_VALUE = 150;
     public static final int CARTS_MIN_VALUE = 1;
     public static final int CARTS_MAX_VALUE = 15;
-    public static final double PRICE_MIN_VALUE = 0.10;
-    public static final double PRICE_MAX_VALUE = 2.50;
 
     private static final String TRAIN_PASSENGER_ERROR_MESSAGE = String.format("A train cannot" +
             " have less than %d passengers" +

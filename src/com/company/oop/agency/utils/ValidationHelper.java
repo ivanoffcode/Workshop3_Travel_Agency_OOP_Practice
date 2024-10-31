@@ -11,8 +11,7 @@ public class ValidationHelper {
     private static final String NEGATIVE_INT_ERROR = "Value of '%s' must be a positive number. Actual value: %.2f.";
 
     public static void validateValueInRange(double value, double min, double max, String errorMessage) {
-        // Needs to check if value > min and if value < max
-        if(value < min || value > max) {
+        if (value < min || value > max) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
